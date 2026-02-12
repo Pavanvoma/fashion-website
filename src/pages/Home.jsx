@@ -5,18 +5,31 @@ import ProductCard from "../components/ProductCard";
 
 function Home() {
   const dispatch = useDispatch();
-  const { items, loading } = useSelector((s) => s.products);
+  const { items, loading } = useSelector(
+    (state) => state.products
+  );
 
   useEffect(() => {
     dispatch(fetchProducts());
   }, [dispatch]);
 
-  if (loading) return <h2 style={{ padding: 20 }}>Loading...</h2>;
+  /* Loader */
+  if (loading) {
+    return (
+      <div className="loader">
+        <div className="spinner"></div>
+        <p>Loading products...</p>
+      </div>
+    );
+  }
 
   return (
     <div className="products">
-      {items.map((p) => (
-        <ProductCard key={p.id} product={p} />
+      {items.map((product) => (
+        <ProductCard
+          key={product.id}
+          product={product}
+        />
       ))}
     </div>
   );

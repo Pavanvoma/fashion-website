@@ -1,37 +1,29 @@
-import "../App.css";
+import { useDispatch, useSelector } from "react-redux";
+import { toggleFavorite } from "../store/productSlice";
 
 export default function ProductCard({ product }) {
-  const addFav = () => {
-    const fav = JSON.parse(localStorage.getItem("fav")) || [];
-    fav.push(product);
-    localStorage.setItem("fav", JSON.stringify(fav));
-    alert("Added to favorites");
-  };
+  const dispatch = useDispatch();
+  const favorites = useSelector(
+    (s) => s.products.favorites
+  );
+
+  const isFav = favorites.includes(product.id);
 
   return (
-    <div className="card" style={{ position: "relative" }}>
-      {/* Favorite Icon */}
-      <button
-        onClick={addFav}
-        style={{
-          position: "absolute",
-          top: 10,
-          right: 10,
-          background: "white",
-          border: "none",
-          cursor: "pointer",
-          fontSize: "20px",
-        }}
-      >
-        ❤️
-      </button>
-
-      <img src={product.image} alt="" />
+    <div className="card">
+      <img src={product.image} alt={product.title} />
 
       <h4>{product.title}</h4>
+      <p>₹{product.price}</p>
 
-      <p className="price">₹ {product.price}</p>
-      <p>⭐ {product.rating.rate}</p>
+      <button
+        className="fav-btn"
+        onClick={() =>
+          dispatch(toggleFavorite(product.id))
+        }
+      >
+        {isFav ? "❤️ Saved" : "🤍 Favorite"}
+      </button>
     </div>
   );
 }

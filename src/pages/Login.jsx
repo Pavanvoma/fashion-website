@@ -1,33 +1,42 @@
 import { useState } from "react";
-import "../App.css";
 
 export default function Login() {
   const [email, setEmail] = useState("");
-  const [pass, setPass] = useState("");
+  const [password, setPassword] = useState("");
 
-  const login = () => {
-    if (!email || !pass) return alert("Enter details");
-    alert("Login Success");
+  const handleLogin = (e) => {
+    e.preventDefault();
+
+    if (!email || !password) {
+      alert("Enter email & password");
+      return;
+    }
+
+    alert("Login successful (dummy)");
   };
 
   return (
     <div className="login-container">
-      <div className="login-box">
-        <h3>Login</h3>
+      <form className="login-card" onSubmit={handleLogin}>
+        <h2>Welcome Back 👋</h2>
+        <p>Login to continue shopping</p>
 
         <input
+          type="email"
           placeholder="Email"
-          onChange={e => setEmail(e.target.value)}
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
         />
 
         <input
-          placeholder="Password"
           type="password"
-          onChange={e => setPass(e.target.value)}
+          placeholder="Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
         />
 
-        <button onClick={login}>Login</button>
-      </div>
+        <button type="submit">Login</button>
+      </form>
     </div>
   );
 }
