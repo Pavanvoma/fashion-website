@@ -1,0 +1,94 @@
+body {
+  margin: 0;
+  font-family: Arial;
+  background: #f5f6fa;
+}
+
+/* NAVBAR */
+.navbar {
+  background: #111827;
+  color: white;
+  padding: 15px 30px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.navbar a {
+  color: white;
+  margin-left: 20px;
+  text-decoration: none;
+}
+
+.navbar a:hover {
+  color: #60a5fa;
+}
+
+/* GRID */
+.products {
+  padding: 20px;
+  display: grid;
+  gap: 20px;
+}
+
+@media (min-width: 1024px) {
+  .products { grid-template-columns: repeat(5,1fr); }
+}
+@media (max-width: 1023px) {
+  .products { grid-template-columns: repeat(3,1fr); }
+}
+@media (max-width: 600px) {
+  .products { grid-template-columns: repeat(2,1fr); }
+}
+
+/* CARD */
+.card {
+  background: white;
+  padding: 15px;
+  border-radius: 8px;
+  position: relative;
+  transition: .3s;
+}
+
+.card:hover {
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+.card img {
+  width: 100%;
+  height: 150px;
+  object-fit: contain;
+  transition: .3s;
+}
+
+.card img:hover {
+  transform: scale(1.1);
+}
+
+.fav-btn {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  border: none;
+  background: white;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.price {
+  color: green;
+  font-weight: bold;
+}
+
+/* LOGIN */
+.login-container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-box {
+  background: white;
+  padding: 30px;
+  width: 320px;
+}
