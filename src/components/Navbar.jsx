@@ -1,16 +1,28 @@
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { toggleTheme } from "../store/themeSlice";
 import "../App.css";
 
 export default function Navbar() {
-  return (
-    <div className="navbar">
-      <h2>ProductApp</h2>
+  const dispatch = useDispatch();
+  const theme = useSelector((s) => s.theme.mode);
 
-      <div>
+  return (
+    <nav className="navbar">
+      <div className="logo">🛍 ShopEase</div>
+
+      <div className="nav-links">
         <Link to="/">Home</Link>
-        <Link to="/favorites">Favorites</Link>
+        <Link to="/favorites">Wishlist</Link>
         <Link to="/login">Login</Link>
+
+        <button
+          className="theme-btn"
+          onClick={() => dispatch(toggleTheme())}
+        >
+          {theme === "light" ? "🌙" : "☀️"}
+        </button>
       </div>
-    </div>
+    </nav>
   );
 }

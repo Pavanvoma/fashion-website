@@ -2,42 +2,188 @@
 body {
   margin: 0;
   font-family: Arial, Helvetica, sans-serif;
+}
+
+/* ---------- LIGHT THEME ---------- */
+.light {
   background: #f5f6fa;
+  color: #111;
+  min-height: 100vh;
+}
+
+/* ---------- DARK THEME ---------- */
+.dark {
+  background: #111;
+  color: white;
+  min-height: 100vh;
 }
 
 /* ---------- NAVBAR ---------- */
 .navbar {
   background: #111827;
   color: white;
-  padding: 15px 30px;
+  padding: 15px 25px;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.navbar a {
+.dark .navbar {
+  background: black;
+}
+
+/* ---------- NAV LINKS ---------- */
+.nav-links {
+  display: flex;
+  gap: 18px;
+  align-items: center;
+}
+
+.nav-links a {
   color: white;
-  margin-left: 20px;
   text-decoration: none;
 }
 
-.navbar a:hover {
+.nav-links a:hover {
   color: #60a5fa;
 }
 
-/* Mobile Navbar */
-@media (max-width: 600px) {
-  .navbar {
-    flex-direction: column;
-    gap: 10px;
-  }
+/* ---------- THEME BUTTON ---------- */
+.theme-btn {
+  border: none;
+  background: #374151;
+  color: white;
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
 }
 
-/* ---------- PRODUCTS GRID ---------- */
+.theme-btn:hover {
+  background: #4b5563;
+}
+/* ---------- LOGIN PAGE ---------- */
+.login-container {
+  min-height: calc(100vh - 70px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-card {
+  background: white;
+  padding: 30px;
+  width: 320px;
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+.dark .login-card {
+  background: #222;
+  color: white;
+}
+
+.login-card h2 {
+  margin-bottom: 5px;
+}
+
+.login-card p {
+  margin-bottom: 20px;
+  color: gray;
+}
+
+.dark .login-card p {
+  color: #aaa;
+}
+
+.login-card input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 12px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.dark .login-card input {
+  background: #333;
+  color: white;
+  border: 1px solid #444;
+}
+
+.login-card button {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  background: #007bff;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.login-card button:hover {
+  background: #0056b3;
+}
+
+
+/* ---------- PRODUCT GRID ---------- */
 .products {
   padding: 20px;
   display: grid;
   gap: 20px;
+}
+/* ---------- PRODUCT CARD ---------- */
+.card {
+  border: 1px solid #ddd;
+  padding: 15px;
+  border-radius: 10px;
+  background: white;
+  text-align: center;
+  transition: 0.3s;
+}
+
+.dark .card {
+  background: #222;
+  color: white;
+  border-color: #333;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 24px rgba(0,0,0,0.2);
+}
+
+.card img {
+  width: 100%;
+  height: 160px;
+  object-fit: contain;
+}
+
+/* Product title */
+.card h4 {
+  font-size: 14px;
+  line-height: 1.4;
+  min-height: 40px;
+}
+
+/* Price */
+.price {
+  color: green;
+  font-weight: bold;
+}
+
+/* View button */
+.view-btn {
+  margin-top: 8px;
+  padding: 8px 12px;
+  border: none;
+  background: #007bff;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.view-btn:hover {
+  background: #0056b3;
 }
 
 /* Desktop */
@@ -71,6 +217,12 @@ body {
   transition: 0.3s;
 }
 
+.dark .card {
+  background: #222;
+  color: white;
+  border-color: #333;
+}
+
 .card:hover {
   transform: translateY(-8px);
   box-shadow: 0 12px 28px rgba(0,0,0,0.2);
@@ -83,19 +235,13 @@ body {
   transition: transform 0.4s;
 }
 
+/* IMPORTANT: images stay normal */
+.dark img {
+  filter: none;
+}
+
 .card:hover img {
   transform: scale(1.08);
-}
-
-.card h4 {
-  font-size: 14px;
-  height: 40px;
-  overflow: hidden;
-}
-
-.price {
-  font-weight: bold;
-  color: green;
 }
 
 /* ---------- FAVORITE BUTTON ---------- */
@@ -107,53 +253,10 @@ body {
   background: #111827;
   color: white;
   cursor: pointer;
-  transition: 0.3s;
 }
 
 .fav-btn:hover {
   background: #ff4081;
-  transform: scale(1.05);
-}
-
-/* ---------- LOGIN PAGE ---------- */
-.login-container {
-  min-height: 90vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: linear-gradient(135deg, #667eea, #764ba2);
-}
-
-.login-card {
-  background: white;
-  padding: 40px;
-  border-radius: 12px;
-  width: 320px;
-  text-align: center;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-}
-
-.login-card input {
-  width: 100%;
-  padding: 12px;
-  margin-bottom: 15px;
-  border-radius: 6px;
-  border: 1px solid #ccc;
-}
-
-.login-card button {
-  width: 100%;
-  padding: 12px;
-  border: none;
-  background: #667eea;
-  color: white;
-  border-radius: 6px;
-  cursor: pointer;
-  font-weight: bold;
-}
-
-.login-card button:hover {
-  background: #5a67d8;
 }
 
 /* ---------- LOADER ---------- */
@@ -163,8 +266,8 @@ body {
 }
 
 .spinner {
-  width: 50px;
-  height: 50px;
+  width: 45px;
+  height: 45px;
   border: 5px solid #ddd;
   border-top: 5px solid #111;
   border-radius: 50%;
@@ -177,38 +280,3 @@ body {
     transform: rotate(360deg);
   }
 }
-.empty-fav {
-  text-align: center;
-  margin-top: 60px;
-}
-
-.empty-fav h2 {
-  margin-top: 15px;
-}
-
-.empty-fav p {
-  color: gray;
-}
-.loader {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 80px;
-}
-
-.spinner {
-  width: 45px;
-  height: 45px;
-  border: 5px solid #ddd;
-  border-top: 5px solid #111;
-  border-radius: 50%;
-  animation: spin 1s linear infinite;
-  margin-bottom: 10px;
-}
-
-@keyframes spin {
-  to {
-    transform: rotate(360deg);
-  }
-}
-

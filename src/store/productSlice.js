@@ -4,9 +4,21 @@ import axios from "axios";
 export const fetchProducts = createAsyncThunk(
   "products/fetch",
   async () => {
+    const cache = localStorage.getItem("products");
+
+    if (cache) {
+      return JSON.parse(cache);
+    }
+
     const res = await axios.get(
       "https://fakestoreapi.com/products"
     );
+
+    localStorage.setItem(
+      "products",
+      JSON.stringify(res.data)
+    );
+
     return res.data;
   }
 );
@@ -16,7 +28,10 @@ const slice = createSlice({
   initialState: {
     items: [],
     loading: false,
-    favorites: JSON.parse(localStorage.getItem("favorites")) || []
+    error: null,
+    favorites: JSON.parse(
+      localStorage.getItem("favorites") || "[]"
+    ),
   },
 
   reducers: {
@@ -42,10 +57,15 @@ const slice = createSlice({
     builder
       .addCase(fetchProducts.pending, (s) => {
         s.loading = true;
+        s.error = null;
       })
       .addCase(fetchProducts.fulfilled, (s, a) => {
         s.loading = false;
         s.items = a.payload;
+      })
+      .addCase(fetchProducts.rejected, (s) => {
+        s.loading = false;
+        s.error = "Failed to load products";
       });
   },
 });
